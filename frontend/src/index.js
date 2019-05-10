@@ -62,8 +62,57 @@ class Square extends React.Component {
   
   // ========================================
   
-  ReactDOM.render(
-    <Game />,
-    document.getElementById('root')
-  );
+  // ReactDOM.render(
+  //   // <Game />,
+  //   document.getElementById('root')
+  // );
+
+
+function TimeLable (props) {
+  return <h2>Current Time: {props.timeString}</h2>;
+}
+
+class Welcome extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount () {
+    this.timer = setInterval(() => {
+      this.setState({date:new Date()});
+    }, 1000);
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.timer);
+  }
+
+  render () {
+    return (
+    <div>
+      <h1>
+        First blood!
+      </h1>
+      <TimeLable timeString={this.state.date.toLocaleTimeString()} />
+    </div>)
+  }
+}
+
+ReactDOM.render(<Welcome />, document.getElementById('root'));
+
+
+  // function tick() {
+  //   const tickDiv = (
+  //     <div>
+  //       <h1>
+  //         First blood!
+  //       </h1>
+  //       <h2>Current Time: {new Date().toLocaleTimeString()}</h2>
+  //     </div>
+  //   );
+  //   ReactDOM.render(tickDiv, document.getElementById('root'));
+  // }
   
+  // setInterval(tick,1000);
+  //"/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" -o PATH/TO/YOUR/MERGED/FILE.pdf /PATH/TO/ORIGINAL/1.pdf /PATH/TO/ANOTHER/2.pdf /PATH/TO/A/WHOLE/DIR/*.pdf
